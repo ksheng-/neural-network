@@ -42,15 +42,14 @@ class NeuralNetwork:
                     self.weights[2][:, i - self.n_hidden] = line
 
     def save_model(self, filename):
-        with open(filename, 'w+') as f:
-            writer = csv.writer(f, delimiter=' ')
-            writer.writerow([self.n_input, self.n_hidden, self.n_output])
+        with open(filename, 'w+', newline='') as f:
+            f.write(' '.join([str(self.n_input), str(self.n_hidden), str(self.n_output)]) + '\n')
             for i in range(self.n_hidden + self.n_output):
                 if i < self.n_hidden:
                     row = self.weights[1][:, i]
                 else:
                     row = self.weights[2][:, i - self.n_hidden]
-                writer.writerow(['{0:.3f}'.format(n) for n in row])
+                f.write(' '.join(['{0:.3f}'.format(n) for n in row]) + '\n')
 
     def load_data(self, filename):
         with open(filename, 'r') as f:
@@ -112,7 +111,7 @@ class NeuralNetwork:
                 for layer in range(1, 3):
                     for (i, j), value in np.ndenumerate(self.weights[layer]):
                         if i == 0:
-                            self.weights[layer][i, j] += alpha * 1 * deltas[layer][j]
+                            self.weights[layer][i, j] += alpha * -1 * deltas[layer][j]
                         else:
                             self.weights[layer][i, j] += alpha * activations[layer-1][i-1] * deltas[layer][j]
         return self.weights
