@@ -176,12 +176,12 @@ class NeuralNetwork:
         return (class_confusion, class_metrics, microaverage_metrics, macroaverage_metrics)
 
 if __name__ == '__main__':
-    #  nn = NeuralNetwork('models/sample.NNWGrades.init')
-    #  X, Y = load_data('train/wdbc.train')
-    #  nn.train(X, Y, epochs=100)
-    #  nn.save_model('models/test')
+    nn = NeuralNetwork('models/NNVoice.init')
+    X, Y = load_data('train/voice.train')
+    nn.train(X, Y, epochs=100, alpha=.1)
+    nn.save_model('models/NNVoice.1.100.trained')
 
-    X, Y = load_data('test/grades.test')
-    trained = NeuralNetwork('models/test')
+    X, Y = load_data('test/voice.test')
+    trained = NeuralNetwork('models/NNVoice.1.100.trained')
     metrics = trained.test(X, Y)
-    save_metrics(metrics, 'results/test')
+    save_metrics(metrics, 'results/voice.1.100.results')
