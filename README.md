@@ -37,7 +37,7 @@ python test.py
 ```
 The program will prompt you for a neural network, training data, and a results output file. If an invalid input is entered, it will re-prompt. ^C will exit the program. The data is run through the neural network, and the accuracy metrics are saved to the results file.
 
-## Dataset
+## Example Dataset
 The custom set comes from https://www.kaggle.com/primaryobjects/voicegender, a dataset of voice properties labeled by sex.
 The full dataset is 3168 rows and 21 columns, with 20 floating plot features and a label. The features are listed below:
 *  meanfreq: mean frequency (in kHz)
@@ -71,4 +71,4 @@ In order to generate weights for the initial neural network, numpy's random.rand
 
 The example training set can be found in train/voice.train, and the testing set in test/voice.test. The initial network weights can be found in models/NNVoice.init.
 
-After training for 100 epochs with a learning rate of .1 and 5 hidden nodes, the network achieved an f1 score of .970 and an accuracy of .969. The network can be found in models/voice.1.100.trained and the results in results/voice.1.100.results.
+After training for 100 epochs with a learning rate of .1 and 5 hidden nodes, the network achieved an f1 score of .970 and an accuracy of .969. The network can be found in models/voice.1.100.trained and the results in results/voice.1.100.results. Adjusting the number of hidden nodes or learning parameters did not significantly alter the performance.
